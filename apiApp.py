@@ -14,6 +14,3 @@ def appRequest(username):
               Request Value: {}
               Intensity (if needed): {}
               User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
-
-if __name__ == "__main__":
-    app.run(debug=True)
