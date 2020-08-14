@@ -1,5 +1,5 @@
 import apiApp
 
 if __name__ == "__main__":
-    apiApp.run()
+    apiApp.run(port='8000')
 
