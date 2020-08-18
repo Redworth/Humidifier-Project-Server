@@ -2,7 +2,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/app-request/ON', methods=['GET', 'POST'])   
+@app.route('/app-request/ON', methods=['GET', 'POST'])
 def appRequestON():
     req_data = request.get_json()
     
