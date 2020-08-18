@@ -2,8 +2,8 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/app-request/ON', methods=['GET', 'POST'])   
-def appRequest():
+@app.route('/app-request/ON', methods=['GET', 'POST'])
+def appRequestON():
     req_data = request.get_json()
     
     tarDevice = req_data['targetDevice']
@@ -16,7 +16,7 @@ def appRequest():
               User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
 
 @app.route('/app-request/OFF', methods=['GET', 'POST'])   
-def appRequest():
+def appRequestOFF():
     req_data = request.get_json()
     
     tarDevice = req_data['targetDevice']
