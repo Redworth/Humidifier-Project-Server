@@ -1,4 +1,5 @@
 {
+    "username" : "rkarthik, abhosle, ipanda, tmeek, tmendelson, epogrebinsky, etc.",
     "targetDevice" : "HUM1, THER1, HUM2, TRAC1, <custom_name>",
     "requestType" : "hum_on, hum_off, hum_sch_12-45, hum_sch_date_8-14-2020, hum_conn_ther",
     "requestDetails": "on_hum_ther_bel_60, NA",
