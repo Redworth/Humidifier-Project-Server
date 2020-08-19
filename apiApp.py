@@ -29,3 +29,17 @@ def appRequestOFF():
               Intensity (if needed): {}
               User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
 
+def appRequestSCH():
+    req_data = request.get_json()
+    
+    tarDevice = req_data['targetDevice']
+    requestValue = req_data['requestType']
+    intensityData = req_data['targetIntensity']
+    username = req_data['username']
+    
+    return """Target Device: {}
+              Request Value: {}
+              Intensity (if needed): {}
+              User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
+
+
