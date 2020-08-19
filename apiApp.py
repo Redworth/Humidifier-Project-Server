@@ -7,7 +7,7 @@ def appRequestON():
     req_data = request.get_json()
     
     tarDevice = req_data['targetDevice']
-    requestValue = req_data['requestType']
+    requestDetails = req_data['requestDetails']
     intensityData = req_data['targetIntensity']
     
     return """Target Device: {}
@@ -20,7 +20,7 @@ def appRequestOFF():
     req_data = request.get_json()
     
     tarDevice = req_data['targetDevice']
-    requestValue = req_data['requestType']
+    requestDetails = req_data['requestDetails']
     intensityData = req_data['targetIntensity']
     username = req_data['username']
     
@@ -33,7 +33,7 @@ def appRequestSCH():
     req_data = request.get_json()
     
     tarDevice = req_data['targetDevice']
-    requestValue = req_data['requestType']
+    requestDetails = req_data['requestDetails']
     intensityData = req_data['targetIntensity']
     username = req_data['username']
     
