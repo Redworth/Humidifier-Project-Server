@@ -13,7 +13,7 @@ def appRequestON():
     return """Target Device: {}
               Request Value: {}
               Intensity (if needed): {}
-              User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
+              User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
 
 @app.route('/app-request/OFF', methods=['GET', 'POST'])   
 def appRequestOFF():
@@ -27,7 +27,7 @@ def appRequestOFF():
     return """Target Device: {}
               Request Value: {}
               Intensity (if needed): {}
-              User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
+              User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
 
 def appRequestSCH():
     req_data = request.get_json()
@@ -40,6 +40,6 @@ def appRequestSCH():
     return """Target Device: {}
               Request Value: {}
               Intensity (if needed): {}
-              User In Question: {}""".format(tarDevice, requestValue, intensityData, username)
+              User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
 
 
