@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ all_code ]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,7 +25,7 @@ jobs:
         # Token to authenticate with GitHub
         github_token: 4f7b2f5520f8af247df4b61e7c5adb0313d21699
         # Source branch you want to merge into the target.
-        source: 'all_code'
+        source: 'master'
         # Target branch, where the source branch is going to be merged into
         target: 'rohit_code'
     - name: Action-Automerge
@@ -34,7 +34,7 @@ jobs:
         # Token to authenticate with GitHub
         github_token: 4f7b2f5520f8af247df4b61e7c5adb0313d21699
         # Source branch you want to merge into the target.
-        source: 'all_code'
+        source: 'master'
         # Target branch, where the source branch is going to be merged into
         target: 'ishaan_code'
     - name: Action-Automerge
@@ -43,7 +43,7 @@ jobs:
         # Token to authenticate with GitHub
         github_token: 4f7b2f5520f8af247df4b61e7c5adb0313d21699
         # Source branch you want to merge into the target.
-        source: 'all_code'
+        source: 'master'
         # Target branch, where the source branch is going to be merged into
         target: 'arav_code'
     - name: Action-Automerge
@@ -52,6 +52,6 @@ jobs:
         # Token to authenticate with GitHub
         github_token: 4f7b2f5520f8af247df4b61e7c5adb0313d21699
         # Source branch you want to merge into the target.
-        source: 'all_code'
+        source: 'master'
         # Target branch, where the source branch is going to be merged into
         target: 'ethan_code'
