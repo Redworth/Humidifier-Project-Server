@@ -6,9 +6,17 @@ app = Flask(__name__)
 def appRequestON():
     req_data = request.get_json()
     
-    tarDevice = req_data['targetDevice']
-    requestDetails = req_data['requestDetails']
-    intensityData = req_data['targetIntensity']
+    try:
+        tarDevice = req_data['targetDevice']
+        requestDetails = req_data['requestDetails']
+        intensityData = req_data['targetIntensity']
+        username = req_data['username']
+
+    except:
+        tarDevice = "Not Found"
+        requestDetails = "Not Found"
+        intensityData = "Not Found"
+        username = "Not Found"
     
     return """Target Device: {}
               Request Value: {}
@@ -19,23 +27,38 @@ def appRequestON():
 def appRequestOFF():
     req_data = request.get_json()
     
-    tarDevice = req_data['targetDevice']
-    requestDetails = req_data['requestDetails']
-    intensityData = req_data['targetIntensity']
-    username = req_data['username']
+    try:
+        tarDevice = req_data['targetDevice']
+        requestDetails = req_data['requestDetails']
+        intensityData = req_data['targetIntensity']
+        username = req_data['username']
+
+    except:
+        tarDevice = "Not Found"
+        requestDetails = "Not Found"
+        intensityData = "Not Found"
+        username = "Not Found"
     
     return """Target Device: {}
               Request Value: {}
               Intensity (if needed): {}
               User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
 
+@app.route('/app-request/SCH', methods=['GET', 'POST'])
 def appRequestSCH():
     req_data = request.get_json()
     
-    tarDevice = req_data['targetDevice']
-    requestDetails = req_data['requestDetails']
-    intensityData = req_data['targetIntensity']
-    username = req_data['username']
+    try:
+        tarDevice = req_data['targetDevice']
+        requestDetails = req_data['requestDetails']
+        intensityData = req_data['targetIntensity']
+        username = req_data['username']
+
+    except:
+        tarDevice = "Not Found"
+        requestDetails = "Not Found"
+        intensityData = "Not Found"
+        username = "Not Found"
     
     return """Target Device: {}
               Request Value: {}
