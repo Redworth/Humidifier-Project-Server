@@ -19,6 +19,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      env:
+        GITHUB_WORKSPACE: /
     - name: Action-Automerge
       uses: mtanzi/action-automerge@v1
       id: merge
