@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Merge to Master
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -21,8 +21,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Action-Automerge
       uses: mtanzi/action-automerge@v1
+      id: merge
       with:
-        # Token to authth GitHub
+        # Token to authenticate with GitHub
         github_token: 4f7b2f5520f8af247df4b61e7c5adb0313d21699
         # Source branch you want to merge into the target.
         source: 'all_code'
