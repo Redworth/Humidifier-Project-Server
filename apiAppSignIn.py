@@ -1,7 +1,7 @@
 from apiApp1 import app
 
 @app.route('/app-request/SignIn', methods=['GET', 'POST'])
-def appRequestON():
+def appRequestSIGNIN():
     req_data = request.get_json()
     
     try:
