@@ -13,5 +13,5 @@ def appRequestSIGNIN():
         username = "Not found"
         password = "Not found"
     
-    return """Username: {}
-              Password: {}""".format(username, password)
+    return """<h1>Username: {}</h1>
+              <h1>Password: {}</h1>""".format(username, password)
