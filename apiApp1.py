@@ -21,10 +21,10 @@ def appRequestON():
         intensityData = "Not Found"
         username = "Not Found"
     
-    return """Target Device: {}
-              Request Value: {}
-              Intensity (if needed): {}
-              User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
+    return """<h1>Target Device: {}</h1>
+              <h1>Request Value: {}</h1>
+              <h1>Intensity (if needed): {}</h1>
+              <h1>User In Question: {}</h1>""".format(tarDevice, requestDetails, intensityData, username)
 
 @app.route('/app-request/OFF', methods=['GET', 'POST'])   
 def appRequestOFF():
@@ -42,10 +42,10 @@ def appRequestOFF():
         intensityData = "Not Found"
         username = "Not Found"
     
-    return """Target Device: {}
-              Request Value: {}
-              Intensity (if needed): {}
-              User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
+    return """<h1>Target Device: {}</h1>
+              <h1>Request Value: {}</h1>
+              <h1>Intensity (if needed): {}</h1>
+              <h1>User In Question: {}</h1>""".format(tarDevice, requestDetails, intensityData, username)
 
 @app.route('/app-request/SCH', methods=['GET', 'POST'])
 def appRequestSCH():
@@ -63,9 +63,9 @@ def appRequestSCH():
         intensityData = "Not Found"
         username = "Not Found"
     
-    return """Target Device: {}
-              Request Value: {}
-              Intensity (if needed): {}
-              User In Question: {}""".format(tarDevice, requestDetails, intensityData, username)
+    return """<h1>Target Device: {}</h1>
+              <h1>Request Value: {}</h1>
+              <h1>Intensity (if needed): {}</h1>
+              <h1>User In Question: {}</h1>""".format(tarDevice, requestDetails, intensityData, username)
 
 
