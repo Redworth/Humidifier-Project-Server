@@ -1,5 +1,6 @@
 from apiApp1 import app
 from flask import request
+import json
 
 @app.route('/app-request/SignIn', methods=['GET', 'POST'])
 def appRequestSIGNIN():
@@ -8,10 +9,13 @@ def appRequestSIGNIN():
     try:
         username = req_data['username']
         password = req_data['password']
+        returnJsonStr = json.dumps(req_data, indent=4)
 
     except:
-        username = "Not found"
-        password = "Not found"
+        req_data = {
+            "username" : "Error",
+            "password" : "Error"
+        }
+        returnJsonStr = json.dumps(req_data, indent=4)
     
-    return """<h1>Username: {}</h1>
-              <h1>Password: {}</h1>""".format(username, password)
+    return returnJsonStr
