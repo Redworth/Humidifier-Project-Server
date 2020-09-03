@@ -1,4 +1,5 @@
 from flask import Flask, request
+import json
 
 app = Flask(__name__)
 
@@ -14,17 +15,18 @@ def appRequestON():
         requestDetails = req_data['requestDetails']
         intensityData = req_data['targetIntensity']
         username = req_data['username']
+        returnJsonStr = json.dumps(req_data, indent=4)
 
     except:
-        tarDevice = "Not Found"
-        requestDetails = "Not Found"
-        intensityData = "Not Found"
-        username = "Not Found"
+        req_data = {
+            "username" : "Error",
+            "targetDevice" : "Error",
+            "requestDetails": "Error",
+            "targetIntensity" : "Error"
+        }
+        returnJsonStr = json.dumps(req_data, indent=4)
     
-    return """<h1>Target Device: {}</h1>
-              <h1>Request Value: {}</h1>
-              <h1>Intensity (if needed): {}</h1>
-              <h1>User In Question: {}</h1>""".format(tarDevice, requestDetails, intensityData, username)
+    return returnJsonStr
 
 @app.route('/app-request/OFF', methods=['GET', 'POST'])   
 def appRequestOFF():
@@ -35,17 +37,18 @@ def appRequestOFF():
         requestDetails = req_data['requestDetails']
         intensityData = req_data['targetIntensity']
         username = req_data['username']
+        returnJsonStr = json.dumps(req_data, indent=4)
 
     except:
-        tarDevice = "Not Found"
-        requestDetails = "Not Found"
-        intensityData = "Not Found"
-        username = "Not Found"
+        req_data = {
+            "username" : "Error",
+            "targetDevice" : "Error",
+            "requestDetails": "Error",
+            "targetIntensity" : "Error"
+        }
+        returnJsonStr = json.dumps(req_data, indent=4)
     
-    return """<h1>Target Device: {}</h1>
-              <h1>Request Value: {}</h1>
-              <h1>Intensity (if needed): {}</h1>
-              <h1>User In Question: {}</h1>""".format(tarDevice, requestDetails, intensityData, username)
+    return returnJsonStr
 
 @app.route('/app-request/SCH', methods=['GET', 'POST'])
 def appRequestSCH():
@@ -56,16 +59,17 @@ def appRequestSCH():
         requestDetails = req_data['requestDetails']
         intensityData = req_data['targetIntensity']
         username = req_data['username']
+        returnJsonStr = json.dumps(req_data, indent=4)
 
     except:
-        tarDevice = "Not Found"
-        requestDetails = "Not Found"
-        intensityData = "Not Found"
-        username = "Not Found"
+        req_data = {
+            "username" : "Error",
+            "targetDevice" : "Error",
+            "requestDetails": "Error",
+            "targetIntensity" : "Error"
+        }
+        returnJsonStr = json.dumps(req_data, indent=4)
     
-    return """<h1>Target Device: {}</h1>
-              <h1>Request Value: {}</h1>
-              <h1>Intensity (if needed): {}</h1>
-              <h1>User In Question: {}</h1>""".format(tarDevice, requestDetails, intensityData, username)
+    return returnJsonStr
 
 
