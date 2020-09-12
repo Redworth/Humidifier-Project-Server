@@ -4,16 +4,16 @@
 users_temp_dict = {
     "rohit" : {
         "devices" : ["HUM1", "Rohit's Humidifier"]
-    }
+    },
     "arav" : {
         "devices" : ["HUM1", "Arav's Humidifier"]
-    }
+    },
     "tal" : {
         "devices" : ["HUM1", "Tal's Humidifier"]
-    }
+    },
     "ethan" : {
         "devices" : ["HUM1", "Ethan's Humidifier"]
-    }
+    },
     "ishaan" : {
         "devices" : ["HUM1", "Ishaan's Humidifier"]
     }
