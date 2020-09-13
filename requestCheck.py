@@ -19,10 +19,10 @@ users_temp_dict = {
     }
 }
 
-"""username = input("Enter username: ")
-   targetdevice = input("Enter Device: ")
-   requestdetails = input('Enter details: ')
-   hum_intensity = input("Enter intensity of the humidifier")"""
+# username = input("Enter username: ")
+# targetdevice = input("Enter Device: ")
+# requestdetails = input('Enter details: ')
+# hum_intensity = input("Enter intensity of the humidifier")
 
 def requestCheck(dict_check):
     while True:
