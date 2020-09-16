@@ -40,6 +40,7 @@ def requestCheck(dict_check):
         else
             print("Not Valid Device Name. Try Again.")
     while True:
+        # only check if it is NA for now
         if requestdetails in  dict_check['requestDetails']:
             break
         else
