@@ -17,6 +17,8 @@ users_temp_dict = {
     "ishaan" : {
         "devices" : ["HUM1", "Ishaan's Humidifier"]
     }
+    "ted" : {
+        "devices" : ["HUM1", "taperoll"]
 }
 
 # username = input("Enter username: ")
