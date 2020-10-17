@@ -22,28 +22,30 @@ users_temp_dict = {
 } 
 
 
+username = ''
 
-def requestCheck(dict_check):
-    while True:
-        if username in  dict_check['username']:
-            break
-        else
-            print("Not Valid Username. Try Again.")
+def requestCheck_username(dict_check):
+    if dict_check['username'] in users_temp_dict:
+        username = dict_check['username']
+        return "Success"
+    else:
+        return "Failure"
 
-    while True:
-        if targetdevice in dict_check['targetDevice']:
-            break
-        else
-            print("Not Valid Device Name. Try Again.")
-    while True:
-        # only check if it is NA for now
-        if requestdetails in  dict_check['requestDetails']:
-            break
-        else
-            print("Not Valid Details. Try Again.")
-    while True:
-        if 0 <= int(hum_intensity) <= 100 or hum_intensity == 'NA':
-            break
-        else
-            print("Not Valid Intensity. Try Again.")
+def requestCheck_targetDevice(dict_check):
+    if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
+        return "Success"
+    else:
+        return "Failure"
+def requestCheck_requestDetails(dict_check):
+    # only check if it is NA for now
+    if dict_check['requestDetails'] in users_temp_dict:
+        return "Success"
+    else:
+        return "Failure"
+def requestCheck_hum_intensity(dict_check):
+    intensity = dict_check["targetIntensity"]
+    if 0 <= int(intensity) <= 100 or intensity == 'NA':
+        return "Success"
+    else:
+        return "Failure"
 
