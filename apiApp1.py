@@ -1,15 +1,14 @@
+import apiApp2
+import apiAppSignIn
 from flask import Flask, request
 import json
 
 app = Flask(__name__)
 
-import apiAppSignIn
-import apiApp2
 
 @app.route('/app-request/ON', methods=['GET', 'POST'])
 def appRequestON():
     req_data = request.get_json()
-    
     try:
         tarDevice = req_data['targetDevice']
         requestDetails = req_data['requestDetails']
@@ -19,19 +18,20 @@ def appRequestON():
 
     except:
         req_data = {
-            "username" : "Error",
-            "targetDevice" : "Error",
+            "username": "Error",
+            "targetDevice": "Error",
             "requestDetails": "Error",
-            "targetIntensity" : "Error"
+            "targetIntensity": "Error"
         }
         returnJsonStr = json.dumps(req_data, indent=4)
-    
+
     return returnJsonStr
 
-@app.route('/app-request/OFF', methods=['GET', 'POST'])   
+
+@app.route('/app-request/OFF', methods=['GET', 'POST'])
 def appRequestOFF():
     req_data = request.get_json()
-    
+
     try:
         tarDevice = req_data['targetDevice']
         requestDetails = req_data['requestDetails']
@@ -41,19 +41,20 @@ def appRequestOFF():
 
     except:
         req_data = {
-            "username" : "Error",
-            "targetDevice" : "Error",
+            "username": "Error",
+            "targetDevice": "Error",
             "requestDetails": "Error",
-            "targetIntensity" : "Error"
+            "targetIntensity": "Error"
         }
         returnJsonStr = json.dumps(req_data, indent=4)
-    
+
     return returnJsonStr
+
 
 @app.route('/app-request/SCH', methods=['GET', 'POST'])
 def appRequestSCH():
     req_data = request.get_json()
-    
+
     try:
         tarDevice = req_data['targetDevice']
         requestDetails = req_data['requestDetails']
@@ -63,13 +64,11 @@ def appRequestSCH():
 
     except:
         req_data = {
-            "username" : "Error",
-            "targetDevice" : "Error",
+            "username": "Error",
+            "targetDevice": "Error",
             "requestDetails": "Error",
-            "targetIntensity" : "Error"
+            "targetIntensity": "Error"
         }
         returnJsonStr = json.dumps(req_data, indent=4)
-    
+
     return returnJsonStr
-
-
