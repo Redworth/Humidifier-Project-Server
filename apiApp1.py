@@ -1,11 +1,11 @@
-import apiApp2
-import apiAppSignIn
 from flask import Flask, request
 import json
 import requestCheck
 
 app = Flask(__name__)
 
+import apiApp2
+import apiAppSignIn
 
 @app.route('/app-request/ON', methods=['GET', 'POST'])
 def appRequestON():
@@ -73,3 +73,4 @@ def appRequestSCH():
         returnJsonStr = json.dumps(req_data, indent=4)
 
     return returnJsonStr
+
