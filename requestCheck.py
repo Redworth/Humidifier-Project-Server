@@ -19,12 +19,13 @@ users_temp_dict = {
     "ted" : {
         "devices" : ["HUM1", "taperoll"]
     }    
-} 
+}   
 
 
 username = ''
 
 def requestCheck_username(dict_check):
+    global username
     if dict_check['username'] in users_temp_dict:
         username = dict_check['username']
         return "Success"
@@ -32,9 +33,10 @@ def requestCheck_username(dict_check):
         return "Failure"
 
 def requestCheck_targetDevice(dict_check):
-    if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
-        return "Success"
-    else:
+    try:
+        if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
+            return "Success"
+    except:
         return "Failure"
 def requestCheck_requestDetails(dict_check):
     # only check if it is NA for now
@@ -48,4 +50,3 @@ def requestCheck_hum_intensity(dict_check):
         return "Success"
     else:
         return "Failure"
-
