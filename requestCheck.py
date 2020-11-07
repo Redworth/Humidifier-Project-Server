@@ -39,8 +39,8 @@ def requestCheck_targetDevice(dict_check):
     except:
         return "Failure"
 def requestCheck_requestDetails(dict_check):
-    # only check if it is NA for now
-    if dict_check['requestDetails'] in users_temp_dict:
+    # only check if it is NA for no
+    if dict_check['requestDetails'] == 'NA':
         return "Success"
     else:
         return "Failure"
