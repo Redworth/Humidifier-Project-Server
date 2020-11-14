@@ -46,7 +46,9 @@ def requestCheck_requestDetails(dict_check):
         return "Failure"
 def requestCheck_hum_intensity(dict_check):
     intensity = dict_check["targetIntensity"]
-    if 0 <= int(intensity) <= 100 or intensity == 'NA':
-        return "Success"
-    else:
+    try:
+        if 0 <= int(intensity) <= 100 or intensity == 'NA':
+            return "Success"
+    
+    except:
         return "Failure"
