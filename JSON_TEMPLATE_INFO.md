@@ -8,5 +8,3 @@ This template is for moving the requests from one end to the other (i.e: phone t
     "requestDetails": "NA",
     "targetIntensity" : 80
 }
-
-This is conjunction with the URL (in this case the URL is for the movement from phone to server): "redworth-linux-vm-1.westus2.cloudapp.azure.com/app-request/<<string:username>>", where <string:username> is a variable part of the URL that accepts any string. In this case, that string is the username for the person in question.
