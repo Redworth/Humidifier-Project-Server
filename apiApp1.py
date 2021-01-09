@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import requestCheck
+import databaseConnection
 
 app = Flask(__name__)
 
@@ -22,6 +23,9 @@ def appRequestON():
         "Intensity": intensityCheck,
         "Other Details": detailsCheck
     }
+
+    if (usernameCheck == "Success" and targetCheck == "Success" and intensityCheck == "Success" and detailsCheck == "Success"):
+        databaseConnection.updateData()
 
     jsonString = json.dumps(returnDict, indent=4)
     return jsonString
