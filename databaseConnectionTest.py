@@ -1,26 +1,24 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-import os
+from decouple import config
 
-cred = credentials.Certificate(os.getenv('FIREBASE_CERT'))
+cred = credentials.Certificate(config('FIREBASE_ADMIN'))
 
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://humidifier-project---redworth-default-rtdb.firebaseio.com/'
 })
 
+#retrieving data using requestCheck.py
 ref = db.reference('/')
-print(ref.get())
+dataDict = ref.get()
 
-ref = db.reference('/rohit/devices/HUM1')
-ref.set('on')
+print(dataDict['arav'])
+dataDict['arav']['devices']['HUM1'] = 'on'
 
-ref = db.reference('/')
-print(ref.get())
+ref.set(dataDict)
 
-ref = db.reference('/rohit/devices/HUM1')
-ref.set('off')
 
-ref = db.reference('/')
-pythonDict = ref.get()
-
+#setting data for databaseConnection.py
+ref = db.reference(f'/{username}/devices/{targetDevice}')
+ref.set(intensity)
