@@ -12,8 +12,8 @@ firebase_admin.initialize_app(cred, {
 ref = db.reference('/')
 print(ref.get())
 
-ref = db.reference('/arav/devices/HUM1')
-ref.set('off')
+ref = db.reference('/rohit/devices/HUM1')
+ref.set('on')
 
 ref = db.reference('/')
 print(ref.get())
