@@ -5,7 +5,7 @@ setup(
     version='1.0.7',
     packages=find_packages(),
     zip_safe=False,
-    py_modules=['apiApp1', 'apiApp2', 'apiAppSignIn', 'databaseConnection', 'databaseConnectionTest', 'requestCheck', 'signInCheck', 'main']
+    py_modules=['apiApp1', 'apiApp2', 'apiAppSignIn', 'databaseConnection', 'databaseConnectionTest', 'requestCheck', 'signInCheck', 'main'],
     install_requires=[
         'flask',
     ],
