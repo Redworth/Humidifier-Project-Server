@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='redworthapp',
-    version='1.0.9',
+    version='1.1.0',
     packages=find_packages(),
     py_modules=['redworthapp.apiApp1', 'redworthapp.apiApp2', 'redworthapp.apiAppSignIn', 'redworthapp.requestCheck', 'redworthapp.databaseConnection', 'redworthapp.databaseConnectionTest'],
     zip_safe=False,
