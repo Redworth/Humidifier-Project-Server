@@ -4,8 +4,8 @@ setup(
     name='redworthapp',
     version='1.0.6',
     packages=find_packages(),
-    include_package_data=True,
     zip_safe=False,
+    py_modules=['apiApp1', 'apiApp2', 'apiAppSignIn', 'databaseConnection', 'databaseConnectionTest', 'requestCheck', 'signInCheck', 'main']
     install_requires=[
         'flask',
     ],
