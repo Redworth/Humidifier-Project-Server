@@ -1,11 +1,12 @@
 from flask import Flask, request
 import json
-import requestCheck
+from redworthapp import requestCheck
+from redworthapp import databaseConnection
 
 app = Flask(__name__)
 
-import apiApp2
-import apiAppSignIn
+from redworthapp import apiApp2
+from redworthapp import apiAppSignIn
 
 @app.route('/app-request/ON', methods=['GET', 'POST'])
 def appRequestON():
@@ -22,6 +23,9 @@ def appRequestON():
         "Intensity": intensityCheck,
         "Other Details": detailsCheck
     }
+
+    if (usernameCheck == "Success" and targetCheck == "Success" and intensityCheck == "Success" and detailsCheck == "Success"):
+        databaseConnection.updateData()
 
     jsonString = json.dumps(returnDict, indent=4)
     return jsonString
