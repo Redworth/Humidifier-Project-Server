@@ -1,12 +1,12 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-from decouple import config
+from os import getenv
 
-cred = credentials.Certificate(config('FIREBASE_ADMIN'))
+cred = credentials.Certificate(getenv('FIREBASE_ADMIN'))
 
 firebase_admin.initialize_app(cred, {
-    'databaseURL' : 'https://humidifier-project---redworth-default-rtdb.firebaseio.com/'
+    'databaseURL' : "https://humidifier-project---redworth-default-rtdb.firebaseio.com/"
 })
 
 #retrieving data using requestCheck.py
