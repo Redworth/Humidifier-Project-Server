@@ -7,10 +7,10 @@ cred = credentials.Certificate(getenv('FIREBASE_ADMIN'))
 
 firebase_admin.initialize_app(cred, {
     'databaseURL' : "https://humidifier-project---redworth-default-rtdb.firebaseio.com/"
-})
+}, name='demo')
 
 #retrieving data using requestCheck.py
-ref = db.reference('/')
+ref = db.reference('/', app='demo')
 dataDict = ref.get()
 
 print(dataDict['arav'])
