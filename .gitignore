@@ -1,3 +1,4 @@
 # Ignore cache files plus directory
 __pycache__
 *.pyc
+*.vscode
