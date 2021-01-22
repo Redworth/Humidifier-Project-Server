@@ -1,4 +1,5 @@
+# Ignore python cache, vs code config files, and README when creating a docker image
 **/__pycache__
 **/.vscode
-**/redworthapp.__pycache__
+**/.pyc
 README.md
