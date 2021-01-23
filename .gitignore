@@ -1,4 +1,4 @@
-# Ignore cache files plus directory
-__pycache__
-*.pyc
+# Ignore python cache files and vs code config files
+*__pycache__
 *.vscode
+*.pyc
