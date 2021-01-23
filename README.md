@@ -36,4 +36,4 @@ docker push ghcr.io/redworth/humidifier-project-server:latest`
 
 ## Contribute
 Users with access to this git repository can contribute by creating a pull request. The team can discuss and review the code after that.
-Access to the current Docker image can be accessed here: [Packages](https://github.com/orgs/Redworth/packages/container/package/humidifier-project-server)
+Access to the current Docker image can be accessed here: [Packages](https://github.com/orgs/Redworth/packages/container/package/humidifier-project-server).
