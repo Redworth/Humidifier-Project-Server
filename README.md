@@ -1,7 +1,7 @@
 # Redworth Humidifier IoT Project - IoT Backend Server Application
 
 [![Build Status](https://dev.azure.com/Redworth-Projects/Humidifier%20Development/_apis/build/status/Humidifier-Development-Build?branchName=master)](https://dev.azure.com/Redworth-Projects/Humidifier%20Development/_build/latest?definitionId=3&branchName=master)
-[!"Packages"](https://github.com/orgs/Redworth/packages/container/package/humidifier-project-server)]
+["Packages"](https://github.com/orgs/Redworth/packages/container/package/humidifier-project-server)
 
 This git repository contains the code for our IoT backend for the IoT Humidifier project.
 
