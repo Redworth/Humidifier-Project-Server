@@ -4,64 +4,59 @@ from firebase_admin import db
 from os import getenv
 from firebase_init import main_app
 
-users_temp_dict = {
-    "arav": {
-        "devices": {
-            "Arav's Humidifier": "off",
-            "HUM1": "off"
-        }
-    },
-    "rohit": {
-        "devices": {
-            "HUM1": "off",
-            "Rohit's Humidifier": "off"
-        }
-    },
-    "ted": {
-        "devices": {
-            "HUM1": "off",
-            "taperoll": "off"
-        }
-    }
-}
-
+ref = db.reference('/')
+users_temp_dict = ref.get()
 
 username = ''
 
+usernameSuccess = ''
+targetSuccess = ''
+detailsSuccess = ''
+intensitySuccess = ''
 
-def requestCheck_username(dict_check):
+def requestCheckFunc(dict_check):
     global username
-    if dict_check['username'] in users_temp_dict:
-        username = dict_check['username']
-        return "Success"
-    else:
-        return "Failure"
+    try:
+        if dict_check['username'] in users_temp_dict:
+            username = dict_check['username']
+            usernameSuccess = "Success"
+        else:
+            usernameSuccess = "Failure"
+    except:
+        usernameSuccess = "Failure"
 
-
-def requestCheck_targetDevice(dict_check):
-    global username
     try:
         if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
-            return "Success"
+            targetSuccess = "Success"
         else:
-            return 'Failure'
+            targetSuccess = 'Failure'
     except:
-        return "Failure"
+        targetSuccess = "Failure"
 
-
-def requestCheck_requestDetails(dict_check):
     # only check if it is NA for no
-    if dict_check['requestDetails'] == 'NA':
-        return "Success"
-    else:
-        return "Failure"
+    try: 
+        if dict_check['requestDetails'] == 'NA':
+            detailsSuccess = "Success"
+        else:
+            detailsSuccess = "Failure"
+    except:
+        detailsSuccess = "Failure"
 
+    try:
+        intensity = dict_check["targetIntensity"]
+    except:
+        pass
 
-def requestCheck_hum_intensity(dict_check):
-    intensity = dict_check["targetIntensity"]
     try:
         if 0 <= int(intensity) <= 100 or intensity == 'NA':
-            return "Success"
+            intensitySuccess = "Success"
+        else:
+            intensitySuccess = "Failure"
 
     except:
+        intensitySuccess = "Failure"
+
+    if usernameSuccess == "Success" and targetSuccess == "Success" and intensitySuccess == "Success" and detailsSuccess == "Success":
+        return "Success"
+    else:
         return "Failure"
