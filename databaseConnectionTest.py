@@ -14,6 +14,11 @@ dataDict['arav']['devices']['HUM1'] = 'on'
 ref.set(dataDict)
 
 
-#setting data for databaseConnection.py
+#setting data for databaseConnection.py. variables used below will be set to blank default values before usage.
+
+username = ''
+targetDevice = ''
+intensity = 0
+
 ref = db.reference(f'/{username}/devices/{targetDevice}')
 ref.set(intensity)

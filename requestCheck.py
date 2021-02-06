@@ -14,6 +14,7 @@ targetSuccess = ''
 detailsSuccess = ''
 intensitySuccess = ''
 
+
 def requestCheckFunc(dict_check):
     global username
     try:
@@ -34,7 +35,7 @@ def requestCheckFunc(dict_check):
         targetSuccess = "Failure"
 
     # only check if it is NA for no
-    try: 
+    try:
         if dict_check['requestDetails'] == 'NA':
             detailsSuccess = "Success"
         else:
@@ -44,11 +45,7 @@ def requestCheckFunc(dict_check):
 
     try:
         intensity = dict_check["targetIntensity"]
-    except:
-        pass
-
-    try:
-        if 0 <= int(intensity) <= 100 or intensity == 'NA':
+        if 0 <= int(intensity) <= 100:
             intensitySuccess = "Success"
         else:
             intensitySuccess = "Failure"
@@ -57,6 +54,10 @@ def requestCheckFunc(dict_check):
         intensitySuccess = "Failure"
 
     if usernameSuccess == "Success" and targetSuccess == "Success" and intensitySuccess == "Success" and detailsSuccess == "Success":
-        return "Success"
+        return {
+            "Result": "Success"
+        }
     else:
-        return "Failure"
+        return {
+            "Result": "Failure"
+        }
