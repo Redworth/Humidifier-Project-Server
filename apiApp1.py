@@ -8,29 +8,15 @@ app = Flask(__name__)
 import apiApp2
 import apiAppSignIn
 
-@app.route('/app-request/ON', methods=['GET', 'POST'])
+@app.route('/app-request', methods=['GET', 'POST'])
 def appRequestON():
     req_data = request.get_json()
 
     check = requestCheck.requestCheckFunc(req_data)
 
-    return f"<h1>{check}</h1>"
+    jsonReturn = json.dumps(check)
 
+    if check['Result'] == "Success":
+        databaseConnection.updateData(req_data['username'], req_data['targetDevice'], req_data['targetIntensity'])
 
-@app.route('/app-request/OFF', methods=['GET', 'POST'])
-def appRequestOFF():
-    req_data = request.get_json()
-
-    check = requestCheck.requestCheckFunc(req_data)
-
-    return f"<h1>{check}</h1>"
-
-
-@app.route('/app-request/SCH', methods=['GET', 'POST'])
-def appRequestSCH():
-    req_data = request.get_json()
-
-    check = requestCheck.requestCheckFunc(req_data)
-
-    return f"<h1>{check}</h1>"
-
+    return jsonReturn
