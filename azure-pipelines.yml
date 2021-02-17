@@ -45,6 +45,8 @@ jobs:
       sshEndpoint: 'SSH connection to server'
       runOptions: 'commands'
       commands: 'cat ~/docker_login.txt | sudo docker login ghcr.io --username rohit-karthik --password-stdin'
+      failOnStdErr: false
+      interactiveSession: true
       readyTimeout: '20000'
   - task: SSH@0
     displayName: Pull Image
