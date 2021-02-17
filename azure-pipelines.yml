@@ -18,7 +18,7 @@ schedules:
     - master
 
 pool:
-  vmImage: ubuntu-default
+  vmImage: ubuntu-latest
 
 
 jobs:
