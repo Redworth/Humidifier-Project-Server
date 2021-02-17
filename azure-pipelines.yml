@@ -33,8 +33,6 @@ stages:
           command: 'build'
           Dockerfile: '**/Dockerfile'
           tags: 'latest'
-  - job: Push
-    steps:
       - task: Docker@2
         displayName: Push Image
         inputs:
