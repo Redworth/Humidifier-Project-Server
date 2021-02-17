@@ -3,6 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: Humidifier Backend Build & Release
+
 schedules:
 - cron: 0 12 * * *
   displayName: Run At 12 PM Everyday
