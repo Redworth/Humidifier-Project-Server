@@ -28,6 +28,7 @@ jobs:
       displayName: Build Image
       inputs:
         containerRegistry: 'Github Registry Connection'
+        repository: 'redworth/humidifier-project-server'
         command: 'build'
         Dockerfile: '**/Dockerfile'
         tags: 'latest'
@@ -35,6 +36,7 @@ jobs:
       displayName: Push Image
       inputs:
         containerRegistry: 'Github Registry Connection'
+        repository: 'redworth/humidifier-project-server'
         command: 'push'
         tags: 'latest'
 - job: Deploy
