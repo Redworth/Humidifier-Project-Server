@@ -28,25 +28,25 @@ jobs:
       - name: SSH Script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.SSH_SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: cat docker_login.txt | sudo docker login ghcr.io -u rohit-karthik --password-stdin
       - name: SSH Script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.SSH_SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: sudo docker pull ghcr.io/redworth/humidifier-project-server:latest
       - name: SSH Script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.SSH_SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: |
             if [ "$(sudo docker ps -a -q)" != "" ]
@@ -56,9 +56,9 @@ jobs:
       - name: SSH Script
         uses: appleboy/ssh-action@master
         with:
-           host: ${{ secrets.HOST }}           
-           username: ${{ secrets.USERNAME }}
-           password: ${{ secrets.PSSWORD }}            
+           host: ${{ secrets.SSH_SERVER }}
+           username: ${{ secrets.SSH_USERNAME }}
+           password: ${{ secrets.SSH_PASSWORD }}            
            port: 22
            script: sudo docker run -d -p 80:8000 ghcr.io/redworth/humidifier-project-server:latest
             
