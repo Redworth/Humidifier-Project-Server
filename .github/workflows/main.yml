@@ -12,9 +12,9 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - run: echo secrets.FIREBASE_CERT > credentials.json
-      - run: docker login docker.pkg.github.com -u $github.actor -p $secrets.GITHUB_TOKEN
-      - run: docker build -t docker.pkg.github.com/humidifier-project-server:latest .
-      - run: docker push docker.pkg.github.com/humidifier-project-server:latest
+      - run: docker login ghcr.io -u $github.actor -p $secrets.GITHUB_TOKEN
+      - run: docker build -t humidifier-project-server:latest .
+      - run: docker push humidifier-project-server:latest
   deploy:
     name: Deploy to Production
     runs-on: ubuntu-latest
