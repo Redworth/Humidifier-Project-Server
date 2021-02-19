@@ -12,15 +12,9 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - run: echo secrets.FIREBASE_CERT > credentials.json
-      - run: ls
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: redworth/humidifier-project-server/humidifier-project-server
-          tag_with_ref: true
+      - run: docker login ghcr.io -u $github.actor -p $secrets.GITHUB_TOKEN
+      - run: docker build -t humidifier-project-server:latest .
+      - run: docker push humidifier-project-server:latest
   deploy:
     name: Deploy to Production
     runs-on: ubuntu-latest
