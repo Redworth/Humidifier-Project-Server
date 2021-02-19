@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - run: echo secrets.FIREBASE_CERT > credentials.json
       - run: ls
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
