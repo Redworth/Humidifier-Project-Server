@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - run: docker build -t humidifier-project-server:latest . 
+      - run: ls
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - run: ssh ${{secrets.SSH_USERNAME}}:${{secrets.SSH_PASSWORD}}@${{secrets.SSH_SERVER}} | ls
+      - run: ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_SERVER }} | ls
       - name: SSH Script
         uses: appleboy/ssh-action@master
         with:
