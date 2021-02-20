@@ -24,6 +24,7 @@ jobs:
         mkdir -p ~/.ssh/
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/github_ssh.key
         sudo chmod 600 ~/.ssh/github_ssh.key
+        ssh-agent /bin/sh
         ssh-add ~/.ssh/github_ssh.key
         ssh-keyscan redworth-linux-vm-1.westus2.cloudapp.azure.com >> ~/.ssh/known_hosts
     - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }}
