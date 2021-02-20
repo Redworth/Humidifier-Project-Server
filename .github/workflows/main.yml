@@ -27,5 +27,5 @@ jobs:
         eval "$(ssh-agent)"
         ssh-add ~/.ssh/github_ssh.key
         ssh-keyscan redworth-linux-vm-1.westus2.cloudapp.azure.com >> ~/.ssh/known_hosts
-    - run: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} | ls
+    - run: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} ls
     - run: ls
