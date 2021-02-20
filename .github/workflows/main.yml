@@ -1,9 +1,10 @@
 name: Build and Deploy
 on:
-  schedule:
-  - cron: 39 2 * * *
-  - cron: 0 18 * * *
   workflow_dispatch:
+  schedule:
+  - cron: 51 2 * * *
+  - cron: 0 18 * * *
+
 jobs:
   build:
     name: Build/Push Docker image to GitHub Packages
