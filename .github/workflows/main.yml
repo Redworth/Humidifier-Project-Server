@@ -22,7 +22,9 @@ jobs:
     steps:
     - run: |
         mkdir -p ~/.ssh/
-        echo "${{ secrets.SSH_KEY }}" > ../github_ssh.key
-        sudo chmod 600 ../github_ssh.key
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/github_ssh.key
+        sudo chmod 600 ~/.ssh/github_ssh.key
+        ssh-add ~/.ssh/github_ssh.key
+        ssh-keyscan redworth-linux-vm-1.westus2.cloudapp.azure.com >> ~/.ssh/known_hosts
     - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }}
     - run: ls
