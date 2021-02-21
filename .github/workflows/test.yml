@@ -6,5 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - run: touch credentials.json
     - run: cat ${{ secrets.FIREBASE_CERT }} > credentials.json
     - run: cat credentials.json
