@@ -12,8 +12,9 @@ jobs:
     steps:
     - name: Check out the repo
       uses: actions/checkout@v2
-    - run: export FIREBASE_KEY=${{ secrets.FIREBASE_CERT }}
     - run: echo $FIREBASE_KEY > credentials.json
+      env:
+        FIREBASE_KEY: ${{ secrets.FIREBASE_CERT }}
     - run: docker login ghcr.io -u rohit-karthik -p ${{ secrets.REGISTRY_PASSWORD }}
     - run: docker build -t ghcr.io/redworth/humidifier-project-server:latest .
     - run: docker push ghcr.io/redworth/humidifier-project-server:latest
