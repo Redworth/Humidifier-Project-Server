@@ -1,0 +1,34 @@
+name: Build and Deploy
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: 0 2 * * *
+  - cron: 0 18 * * *
+
+jobs:
+  build:
+    name: Build/Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+    - run: echo secrets.FIREBASE_CERT > credentials.json
+    - run: docker login ghcr.io -u rohit-karthik -p ${{ secrets.REGISTRY_PASSWORD }}
+    - run: docker build -t ghcr.io/redworth/humidifier-project-server:latest .
+    - run: docker push ghcr.io/redworth/humidifier-project-server:latest
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - run: |
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/github_ssh.key
+        sudo chmod 600 ~/.ssh/github_ssh.key
+        eval "$(ssh-agent)"
+        ssh-add ~/.ssh/github_ssh.key
+        ssh-keyscan redworth-linux-vm-1.westus2.cloudapp.azure.com >> ~/.ssh/known_hosts
+    - run: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'cat ~/docker_login.txt | sudo docker login ghcr.io --username rohit-karthik --password-stdin'
+    - run: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'sudo docker pull ghcr.io/redworth/humidifier-project-server:latest'
+    - run: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'if [ "$(sudo docker ps -a -q)" != "" ]; then sudo docker rm --force $(sudo docker ps -a -q); fi'
+    - run: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'sudo docker run -d -p 80:8000 ghcr.io/redworth/humidifier-project-server:latest'
