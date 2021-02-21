@@ -5,7 +5,8 @@ on: workflow_dispatch
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      FIREBASE_KEY: ${{ secrets.FIREBASE_CERT }}
     steps:
-    - run: touch credentials.json
-    - run: cat ${{ secrets.FIREBASE_CERT }} > credentials.json
+    - run: echo $FIREBASE_KEY > credentials.json
     - run: cat credentials.json
