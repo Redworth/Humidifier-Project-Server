@@ -5,7 +5,7 @@ import databaseConnection
 
 app = Flask(__name__)
 
-import apiApp2
+import apiAppIOT
 import apiAppSignIn
 
 @app.route('/app-request', methods=['GET', 'POST'])
