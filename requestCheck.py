@@ -61,3 +61,31 @@ def requestCheckFunc(dict_check):
         return {
             "Result": "Failure"
         }
+
+def requestCheckPoll(dict_check):
+    global username
+    try:
+        if dict_check['username'] in users_temp_dict:
+            username = dict_check['username']
+            usernameSuccess = "Success"
+        else:
+            usernameSuccess = "Failure"
+    except:
+        usernameSuccess = "Failure"
+
+    try:
+        if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
+            targetSuccess = "Success"
+        else:
+            targetSuccess = 'Failure'
+    except:
+        targetSuccess = "Failure"
+    
+    if usernameSuccess == "Success" and targetSuccess == "Success":
+        return {
+            "Result": "Success"
+        }
+    else:
+        return {
+            "Result": "Failure"
+        }

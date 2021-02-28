@@ -9,4 +9,5 @@ def updateData(username, device, value):
     ref.set(value)
 
 def getData(username, device):
-    pass
+    ref = db.reference('/' + username + '/devices/' + device)
+    return ref.get()
