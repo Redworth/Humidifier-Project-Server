@@ -1,4 +1,4 @@
 {
-    "username" : "rkarthik, abhosle, ipanda, tmeek, tmendelson, epogrebinsky, etc.",
-    "targetDevice" : "HUM1, THER1, HUM2, TRAC1, <custom_name>",
+    "username" : "rkarthik, abhosle, tmeek, etc.",
+    "targetDevice" : "HUM1, THER1, HUM2, TRAC1, <custom_name>"
 }
