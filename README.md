@@ -1,6 +1,7 @@
 # Redworth Humidifier IoT Project - IoT Backend Server Application
 
 [![Github Actions](https://github.com/Redworth/Humidifier-Project-Server/actions/workflows/main.yml/badge.svg)](https://github.com/Redworth/Humidifier-Project-Server/actions/workflows/main.yml)
+[![Redworth](https://circleci.com/github/Redworth/Humidifier-Project-Server.svg?style=svg)](https://app.circleci.com/pipelines/github/Redworth/Humidifier-Project-Server)
 
 This git repository contains the code for our IoT backend for the IoT Humidifier project.
 
