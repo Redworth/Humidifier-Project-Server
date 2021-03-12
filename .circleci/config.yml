@@ -36,7 +36,7 @@ jobs:
         name: Docker Login
         command: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'cat ~/docker_login.txt | sudo docker login ghcr.io --username rohit-karthik --password-stdin'
     - run:
-        name: Pull Image:
+        name: Pull Image
         command: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'sudo docker pull ghcr.io/redworth/humidifier-project-server:latest'
     - run:
         name: Remove Existing Containers
