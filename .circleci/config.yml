@@ -45,13 +45,13 @@ jobs:
         name: Run New Container
         command: ssh -i ~/.ssh/github_ssh.key ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'sudo docker run -d -p 80:8000 ghcr.io/redworth/humidifier-project-server:latest'
    
-   workflows:
-    Build and Deploy:
-      jobs:
-      - build
-      - deploy:
-          requires:
-          - build
+workflows:
+  Build and Deploy:
+    jobs:
+    - build
+    - deploy:
+        requires:
+        - build
     
     
         
