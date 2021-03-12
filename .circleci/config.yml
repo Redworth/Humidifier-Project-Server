@@ -2,14 +2,15 @@ version: 2.1
 
 jobs:
   build:
-    docker:
-    - image: python:3.9
-    resource_class: small
+    machine:
+      image: ubuntu-2004:202101-01
     steps:
     - checkout
     - run:
         name: Add Firebase Credentials
         command: echo $FIREBASE_KEY > credentials.json
+    - run:
+        command: cat credentials.json
     - run:
         name: Build Docker Image
         command: |
