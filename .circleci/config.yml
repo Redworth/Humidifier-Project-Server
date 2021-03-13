@@ -10,7 +10,7 @@ jobs:
         name: Add Firebase Credentials
         command: echo $FIREBASE_KEY > credentials.json
     - run:
-        command: cat credentials.json
+        command: cat $FIREBASE_KEY
     - run:
         name: Build Docker Image
         command: |
