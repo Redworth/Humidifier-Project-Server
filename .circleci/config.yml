@@ -20,8 +20,8 @@ jobs:
         name: Push Docker Image
         command: docker push ghcr.io/redworth/humidifier-project-server:latest
   deploy:
-    docker:
-    - image: python:3.9
+    machine:
+      image: ubuntu-2004:202101-01
     resource_class: small
     steps:
     - run:
