@@ -37,8 +37,16 @@ jobs:
 workflows:
   Build and Deploy:
     jobs:
-    - build
+    - build:
+        filters:
+          branches:
+            only:
+            - master
     - deploy:
+        filters:
+          branches:
+            only:
+            - master
         requires:
         - build
     
