@@ -10,8 +10,6 @@ jobs:
         name: Add Firebase Credentials
         command: echo $FIREBASE_KEY > credentials.json
     - run:
-        command: echo $FIREBASE_KEY
-    - run:
         name: Build Docker Image
         command: |
           docker login ghcr.io -u rohit-karthik -p $REGISTRY_PASSWORD
