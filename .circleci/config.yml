@@ -1,0 +1,46 @@
+version: 2.1
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202101-01
+    steps:
+    - checkout
+    - run:
+        name: Add Firebase Credentials
+        command: echo $FIREBASE_KEY > credentials.json
+    - run:
+        name: Build Docker Image
+        command: |
+          docker login ghcr.io -u rohit-karthik -p $REGISTRY_PASSWORD
+          docker build -t ghcr.io/redworth/humidifier-project-server:latest .
+    - run:
+        name: Push Docker Image
+        command: docker push ghcr.io/redworth/humidifier-project-server:latest
+  deploy:
+    machine:
+      image: ubuntu-2004:202101-01
+    steps:
+    - run:
+        name: Docker Login
+        command: ssh -i ~/.ssh/github_ssh.key $SSH_USER@$SSH_SERVER 'cat ~/docker_login.txt | sudo docker login ghcr.io --username rohit-karthik --password-stdin'
+    - run:
+        name: Pull Image
+        command: ssh -i ~/.ssh/github_ssh.key $SSH_USER@$SSH_SERVER 'sudo docker pull ghcr.io/redworth/humidifier-project-server:latest'
+    - run:
+        name: Remove Existing Containers
+        command: ssh -i ~/.ssh/github_ssh.key $SSH_USER@$SSH_SERVER 'if [ "$(sudo docker ps -a -q)" != "" ]; then sudo docker rm --force $(sudo docker ps -a -q); fi'
+    - run:
+        name: Run New Container
+        command: ssh -i ~/.ssh/github_ssh.key $SSH_USER@$SSH_SERVER 'sudo docker run -d -p 80:8000 ghcr.io/redworth/humidifier-project-server:latest'
+   
+workflows:
+  Build and Deploy:
+    jobs:
+    - build
+    - deploy:
+        requires:
+        - build
+    
+    
+        
