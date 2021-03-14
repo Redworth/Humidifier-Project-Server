@@ -5,6 +5,7 @@ import databaseConnection
 from flask_cors import *
 
 app = Flask(__name__)
+
 CORS(app)
 
 import apiAppIOT
