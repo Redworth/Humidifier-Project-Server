@@ -2,10 +2,13 @@ from flask import Flask, request
 import json
 import requestCheck
 import databaseConnection
+from flask_cors import *
 
 app = Flask(__name__)
 
-import apiApp2
+CORS(app)
+
+import apiAppIOT
 import apiAppSignIn
 
 @app.route('/app-request', methods=['GET', 'POST'])

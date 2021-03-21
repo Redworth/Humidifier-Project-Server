@@ -1,5 +1,5 @@
 {
-    "username" : "rkarthik, abhosle, ipanda, tmeek, tmendelson, epogrebinsky, etc.",
+    "username" : "rkarthik, abhosle, tmeek, etc.",
     "targetDevice" : "HUM1, THER1, HUM2, TRAC1, <custom_name>",
     "requestDetails": "on_hum_ther_bel_60, NA",
     "targetIntensity" : "80, 25, 76, 0, NA <numbers should not have quotes around them>"
