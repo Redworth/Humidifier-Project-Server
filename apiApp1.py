@@ -9,7 +9,6 @@ app = Flask(__name__)
 CORS(app)
 
 import apiAppIOT
-import apiAppSignIn
 
 @app.route('/app-request', methods=['GET', 'POST'])
 def appRequestON():
