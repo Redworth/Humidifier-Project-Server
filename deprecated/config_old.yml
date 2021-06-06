@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  kubernetes: circleci/kubernetes@0.12.0
-
 jobs:
   build:
     machine:
@@ -24,14 +21,18 @@ jobs:
     machine:
       image: ubuntu-2004:202101-01
     steps:
-    - checkout
-    - kubernetes/install-kubectl
-    - kubernetes/install-kubeconfig:
-        kubeconfig: KUBECONFIG_DATA
     - run:
-        name: Apply Kubernetes Resources
-        command: |
-          kubectl apply -f kubernetes.yaml
+        name: Docker Login
+        command: ssh $SSH_USER@$SSH_SERVER 'cat ~/docker_login.txt | sudo docker login ghcr.io --username rohit-karthik --password-stdin'
+    - run:
+        name: Pull Image
+        command: ssh $SSH_USER@$SSH_SERVER 'sudo docker pull ghcr.io/redworth/humidifier-project-server:latest'
+    - run:
+        name: Remove Existing Containers
+        command: ssh $SSH_USER@$SSH_SERVER 'if [ "$(sudo docker ps -a -q)" != "" ]; then sudo docker rm --force $(sudo docker ps -a -q); fi'
+    - run:
+        name: Run New Container
+        command: ssh $SSH_USER@$SSH_SERVER 'sudo docker run -d -p 80:8000 ghcr.io/redworth/humidifier-project-server:latest'
    
 workflows:
   Build and Deploy:

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iot-backend
+  labels:
+    app: iot-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: iot-backend
+  template:
+    metadata:
+      labels:
+        app: iot-backend
+    spec:
+      containers:
+        - name: iot-back-app
+          image: ghcr.io/redworth/humidifier-project-server:latest
+          ports:
+           - containerPort: 8000
+      imagePullSecrets:
+      - name: registry-cred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iot-backend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: iot-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+        
+  
