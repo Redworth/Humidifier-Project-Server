@@ -19,7 +19,6 @@ spec:
           image: ghcr.io/redworth/humidifier-project-server
           ports:
            - containerPort: 8000
-          imagePullPolicy: Always
       imagePullSecrets:
       - name: registry-cred
 ---
