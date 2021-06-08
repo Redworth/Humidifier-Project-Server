@@ -59,7 +59,7 @@ def requestCheckFunc(dict_check):
         }
     else:
         return {
-            "Result": "Failure update"
+            "Result": "Failure"
         }
 
 def requestCheckPoll(dict_check):
