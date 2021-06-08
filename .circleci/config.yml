@@ -60,9 +60,9 @@ jobs:
     - kubernetes/install-kubeconfig:
         kubeconfig: KUBECONFIG_DATA
     - kubernetes/update-container-image:
-	container-image-updates: 'iot-back-app=ghcr.io/redworth.humidifier-project-server:$CIRCLE_BUILD_NUM'
-	resouce-name: deployment/iot-backend
-	namespace: 'prod-rohit-karthik'
+        container-image-updates: 'iot-back-app=ghcr.io/redworth.humidifier-project-server:$CIRCLE_BUILD_NUM'
+        resouce-name: deployment/iot-backend
+        namespace: 'prod-rohit-karthik'
    
 workflows:
   Build and Deploy:
