@@ -29,10 +29,9 @@ jobs:
     - kubernetes/install-kubectl
     - kubernetes/install-kubeconfig:
         kubeconfig: KUBECONFIG_DATA
-    - kubernetes/update-container-image:
-        container-image-updates: 'iot-back-app=ghcr.io/redworth.humidifier-project-server:$CIRCLE_BUILD_NUM'
-        resource-name: deployment/iot-backend-dev
-        namespace: 'dev-rohit-karthik'
+    - run:
+        name: Update Kubernetes Image Version
+        command: kubectl set image deployment iot-backend-dev iot-backend-container=ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM --namespace=dev-rohit-karthik
    
   # PROD environment
   buildProd:
@@ -44,7 +43,7 @@ jobs:
         name: Add Firebase Credentials
         command: echo $FIREBASE_KEY > credentials.json
     - run:
-        name: Build Docker Image
+        name: Build Docker Imaged
         command: |
           docker login ghcr.io -u rohit-karthik -p $REGISTRY_PASSWORD
           docker build -t ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM .
@@ -59,10 +58,9 @@ jobs:
     - kubernetes/install-kubectl
     - kubernetes/install-kubeconfig:
         kubeconfig: KUBECONFIG_DATA
-    - kubernetes/update-container-image:
-        container-image-updates: 'iot-back-app=ghcr.io/redworth.humidifier-project-server:$CIRCLE_BUILD_NUM'
-        resource-name: deployment/iot-backend-prod
-        namespace: 'prod-rohit-karthik'
+    - run:
+        name: Update Kubernetes Image Version
+        command: kubectl set image deployment iot-backend-prod iot-backend-container=ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM --namespace=prod-rohit-karthik
    
 workflows:
   Build and Deploy:
