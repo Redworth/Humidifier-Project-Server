@@ -31,7 +31,7 @@ jobs:
         kubeconfig: KUBECONFIG_DATA
     - run:
         name: Update Kubernetes Image Version
-        command: kubectl set image deployment iot-backend-dev iot-backend-container=ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM --namespace=dev-rohit-karthik
+        command: kubectl set image deployment iot-backend-dev humidifier-project-server=ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM --namespace=dev-rohit-karthik
    
   # PROD environment
   buildProd:
@@ -60,7 +60,7 @@ jobs:
         kubeconfig: KUBECONFIG_DATA
     - run:
         name: Update Kubernetes Image Version
-        command: kubectl set image deployment iot-backend-prod iot-backend-container=ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM --namespace=prod-rohit-karthik
+        command: kubectl set image deployment iot-backend-prod humidifier-project-server=ghcr.io/redworth/humidifier-project-server:$CIRCLE_BUILD_NUM --namespace=prod-rohit-karthik
    
 workflows:
   Build and Deploy:
