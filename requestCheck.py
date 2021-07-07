@@ -4,8 +4,14 @@ from firebase_admin import db
 from os import getenv
 from firebase_init import main_app
 
-ref = db.reference('/')
-users_temp_dict = ref.get()
+users_temp_dict = {}
+
+def refreshOrInitDB():
+    global users_temp_dict
+    ref = db.reference('/')
+    users_temp_dict = ref.get()
+
+refreshOrInitDB()
 
 username = ''
 
@@ -14,6 +20,19 @@ targetSuccess = ''
 detailsSuccess = ''
 intensitySuccess = ''
 
+def requestCheckCreateAccount(dict_check):
+    new_username = dict_check['new_username']
+    try:
+        if new_username in users_temp_dict:
+            new_username_success = "Failure"
+        else:
+            new_username_success = "Success"
+    except:
+        new_username_success = "Success"
+
+    return {
+        "Result": new_username_success
+    }
 
 def requestCheckFunc(dict_check):
     global username
