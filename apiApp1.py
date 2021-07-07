@@ -11,7 +11,7 @@ CORS(app)
 import apiAppIOT
 
 @app.route('/app-request', methods=['GET', 'POST'])
-def appRequestON():
+def appUpdateRequest():
     req_data = request.get_json()
 
     check = requestCheck.requestCheckFunc(req_data)
@@ -21,4 +21,18 @@ def appRequestON():
     if check['Result'] == "Success":
         databaseConnection.updateData(req_data['username'], req_data['targetDevice'], req_data['targetIntensity'])
 
+    return jsonReturn
+
+@app.route('/create-user', methods=['GET', 'POST'])
+def createAccountRequest():
+    req_data = request.get_json()
+
+    check = requestCheck.requestCheckCreateAccount(req_data)
+
+    jsonReturn = json.dumps(check)
+
+    if check['Result'] == "Success":
+        #databaseConnection.createUser(req_data['new_username'])
+        pass
+    
     return jsonReturn
