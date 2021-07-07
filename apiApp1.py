@@ -29,6 +29,8 @@ def createAccountRequest():
 
     check = requestCheck.requestCheckCreateAccount(req_data)
 
+    requestCheck.refreshOrInitDB()
+    
     jsonReturn = json.dumps(check)
 
     if check['Result'] == "Success":
