@@ -20,6 +20,41 @@ targetSuccess = ''
 detailsSuccess = ''
 intensitySuccess = ''
 
+def requestCheckRegDevice(dict_check):
+    new_device_name = dict_check['new_device_name']
+    username = dict_check['username']
+
+    userCheck = requestCheckExistingUser(dict_check)
+
+    if userCheck['Result']== "Success":
+        try:
+            if new_device_name in users_temp_dict[username]['devices']:
+                new_device_success = "Failure"
+            else:
+                new_device_success = "Success"
+        except:
+            new_device_success = "Success"
+    else:
+        new_device_success = "Failure"
+
+    return {
+        "Result": new_device_success
+    }
+
+def requestCheckExistingUser(dict_check):
+    username = dict_check['username']
+    try:
+        if username in users_temp_dict:
+            username_success = "Success"
+        else:
+            username_success = "Failure"
+    except:
+        username_success = "Failure"
+
+    return {
+        "Result": username_success
+    }
+
 def requestCheckCreateAccount(dict_check):
     new_username = dict_check['new_username']
     try:
@@ -34,7 +69,7 @@ def requestCheckCreateAccount(dict_check):
         "Result": new_username_success
     }
 
-def requestCheckFunc(dict_check):
+def requestCheckUpdateData(dict_check):
     global username
     try:
         if dict_check['username'] in users_temp_dict:

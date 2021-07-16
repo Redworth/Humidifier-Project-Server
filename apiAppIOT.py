@@ -1,4 +1,4 @@
-from apiApp1 import app
+from apiAppMobile import app
 from flask import request
 import requestCheck
 import databaseConnection
