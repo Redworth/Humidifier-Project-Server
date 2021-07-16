@@ -57,21 +57,26 @@ def registerDeviceRequest():
 @app.route('/get-devices-info', methods=['GET'])
 def getDevicesInfo():
     req_data = request.get_json()
-
-    check = requestCheck.requestCheckExistingUser(req_data)
-
-    if check['Result'] == 'Success':
-        jsonReturn = databaseConnection.getAllDeviceData(req_data['username'])
-        no_devices_dict = {
-            "no_device": "no_device"
-        }
-        if jsonReturn == no_devices_dict:
-            jsonReturn = {
-                "Result": "no_devices_found"
-            }
-    else:
+    
+    if req_data == None:
         jsonReturn = {
-            "Result": "user_not_found"
+            "Result": "no_data_sent"
         }
+    else:
+        check = requestCheck.requestCheckExistingUser(req_data)
+
+        if check['Result'] == 'Success':
+            jsonReturn = databaseConnection.getAllDeviceData(req_data['username'])
+            no_devices_dict = {
+                "no_device": "no_device"
+            }
+            if jsonReturn == no_devices_dict:
+                jsonReturn = {
+                    "Result": "no_devices_found"
+                }
+        else:
+            jsonReturn = {
+                "Result": "user_not_found"
+            }
 
     return jsonReturn
