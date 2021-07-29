@@ -19,23 +19,10 @@ jobs:
     - run: echo $FIREBASE_KEY > credentials.json
       env:
         FIREBASE_KEY: ${{ secrets.FIREBASE_CERT }}
-     
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Log in to registry
-      uses: docker/login-action@v1
-      with:
-        registry: https://ghcr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_cdd02bdb95204bbe960c357483e74edf }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_fc1d9763e6d04ad5b3d90b4ee4f09d92 }}
-
-    - name: Build and push container image to registry
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: ghcr.io/redworth/humidifier-project-server:${{ github.sha }}
-        file: ./Dockerfile
+    
+    - run: docker login ghcr.io -u rohit-karthik -p ${{ secrets.REGISTRY_PASSWORD }}
+    - run: docker build -t ghcr.io/redworth/humidifier-project-server:${{ github.sha }} .
+    - run: docker push ghcr.io/redworth/humidifier-project-server:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
