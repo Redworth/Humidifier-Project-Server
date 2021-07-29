@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_cdd02bdb95204bbe960c357483e74edf }}/redworth/humidifier-project-server:${{ github.sha }}
+        tags: ghcr.io/redworth/humidifier-project-server:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
