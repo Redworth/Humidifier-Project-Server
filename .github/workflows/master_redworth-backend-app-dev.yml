@@ -15,7 +15,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
+    
+    - run: echo $FIREBASE_KEY > credentials.json
+      env:
+        FIREBASE_KEY: ${{ secrets.FIREBASE_CERT }}
+     
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
