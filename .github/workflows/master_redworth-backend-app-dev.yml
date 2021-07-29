@@ -46,6 +46,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'redworth-backend-app-dev'
-        slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_d1ee7fe6a4d2408d8d3745ecc1aa0a15 }}
         images: 'ghcr.io/redworth/humidifier-project-server:${{ github.sha }}'
