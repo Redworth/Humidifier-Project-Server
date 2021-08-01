@@ -29,8 +29,11 @@ jobs:
     steps:
     - name: Kubectl tool installer
       uses: Azure/setup-kubectl@v1
-    - name: Azure Kubernetes set context
-      run: export KUBECONFIG=${{ secrets.KUBECONFIG }}
+    - name: Kubernetes set context
+      uses: Azure/k8s-set-context@v1.1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
     - name: Deploy to AKS
       run: kubectl set image deployment iot-backend-app humidifier-project-server=ghcr.io/redworth/humidifier-project-server:${{ github.sha }}
       
