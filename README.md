@@ -1,6 +1,7 @@
 # Redworth Humidifier IoT Project - IoT Backend Application
 
 [![Redworth](https://img.shields.io/circleci/build/github/Redworth/Humidifier-Project-Server/master?label=circleci&logo=circleci&token=11612bf0a41cefd234dd928bd1bb20922a3bb5f6)](https://app.circleci.com/pipelines/github/Redworth/Humidifier-Project-Server?branch=master)
+[![Build and Deploy to AKS Dev Cluster](https://github.com/Redworth/Humidifier-Project-Server/actions/workflows/azure_kubernetes_service_workflow.yml/badge.svg)](https://github.com/Redworth/Humidifier-Project-Server/actions/workflows/azure_kubernetes_service_workflow.yml)
 
 This git repository contains the code for our IoT backend for the IoT Humidifier project.
 

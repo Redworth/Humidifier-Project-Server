@@ -1,0 +1,39 @@
+name: Build and Deploy to AKS Dev Cluster
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - run: echo $FIREBASE_KEY > credentials.json
+      env:
+        FIREBASE_KEY: ${{ secrets.FIREBASE_CERT }}
+    
+    # build from current directory, and use commit SHA as tag.
+    - run: docker login ghcr.io -u rohit-karthik -p ${{ secrets.REGISTRY_PASSWORD }}
+    - run: docker build -t ghcr.io/redworth/humidifier-project-server:${{ github.sha }} .
+    - run: docker push ghcr.io/redworth/humidifier-project-server:${{ github.sha }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Kubectl tool installer
+      uses: Azure/setup-kubectl@v1
+    - name: Kubernetes set context
+      uses: Azure/k8s-set-context@v1.1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+    - name: Deploy to AKS
+      run: kubectl set image deployment iot-backend-app humidifier-project-server=ghcr.io/redworth/humidifier-project-server:${{ github.sha }}
+      
