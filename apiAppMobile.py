@@ -44,6 +44,21 @@ def createAccountRequest():
             "Result": "Failure"
         }
 
+@app.route('/get-users', methods=['POST'])
+def existingAccountRequest():
+    try:
+        req_data = request.get_json()
+
+        check = requestCheck.requestCheckExistingUser(req_data)
+        
+        jsonReturn = json.dumps(check)
+
+        return jsonReturn
+    except:
+        return {
+            "Result": "Failure"
+        }
+
 @app.route('/register-device', methods=['POST'])
 def registerDeviceRequest():
     try:
