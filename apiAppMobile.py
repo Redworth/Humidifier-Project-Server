@@ -79,7 +79,7 @@ def registerDeviceRequest():
             "Result": "Failure"
         }
 
-@app.route('/get-devices-info', methods=['GET'])
+@app.route('/get-devices-info', methods=['POST'])
 def getDevicesInfo():
     try:
         req_data = request.get_json()
