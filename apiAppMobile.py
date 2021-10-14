@@ -8,16 +8,16 @@ app = Flask(__name__)
 
 CORS(app)
 
-import apiAppIOT
 
 @app.route('/app-request', methods=['POST'])
 def appUpdateRequest():
     try:
         req_data = request.get_json()
         check = requestCheck.requestCheckUpdateData(req_data)
-        jsonReturn = json.dumps(check)  
+        jsonReturn = json.dumps(check)
         if check['Result'] == "Success":
-            databaseConnection.updateData(req_data['username'], req_data['targetDevice'], req_data['targetIntensity'])
+            databaseConnection.updateData(
+                req_data['username'], req_data['targetDevice'], req_data['targetIntensity'])
     except:
         jsonReturn = {
             "Result": "Failure"
@@ -25,24 +25,25 @@ def appUpdateRequest():
 
     return jsonReturn
 
+
 @app.route('/create-user', methods=['POST'])
 def createAccountRequest():
     try:
         req_data = request.get_json()
 
         check = requestCheck.requestCheckCreateAccount(req_data)
-        
+
         jsonReturn = json.dumps(check)
 
         if check['Result'] == "Success":
             databaseConnection.createNewUser(req_data['new_username'])
-            requestCheck.refreshOrInitDB()
 
         return jsonReturn
     except:
         return {
             "Result": "Failure"
         }
+
 
 @app.route('/get-users', methods=['POST'])
 def existingAccountRequest():
@@ -50,7 +51,7 @@ def existingAccountRequest():
         req_data = request.get_json()
 
         check = requestCheck.requestCheckExistingUser(req_data)
-        
+
         jsonReturn = json.dumps(check)
 
         return jsonReturn
@@ -58,6 +59,7 @@ def existingAccountRequest():
         return {
             "Result": "Failure"
         }
+
 
 @app.route('/register-device', methods=['POST'])
 def registerDeviceRequest():
@@ -69,15 +71,16 @@ def registerDeviceRequest():
         jsonReturn = json.dumps(check)
 
         if check['Result'] == "Success":
-            databaseConnection.registerNewDevice(req_data['username'], req_data['new_device_name'])
-            requestCheck.refreshOrInitDB()
+            databaseConnection.registerNewDevice(
+                req_data['username'], req_data['new_device_name'])
 
         return jsonReturn
-    
+
     except:
         return {
             "Result": "Failure"
         }
+
 
 @app.route('/get-devices-info', methods=['POST'])
 def getDevicesInfo():
@@ -86,7 +89,8 @@ def getDevicesInfo():
         check = requestCheck.requestCheckExistingUser(req_data)
 
         if check['Result'] == 'Success':
-            jsonReturn = databaseConnection.getAllDeviceData(req_data['username'])
+            jsonReturn = databaseConnection.getAllDeviceData(
+                req_data['username'])
             no_devices_dict = {
                 "no_device": "no_device"
             }
@@ -105,6 +109,7 @@ def getDevicesInfo():
 
     return jsonReturn
 
+
 @app.route('/specific-device', methods=['POST'])
 def appRequestOneDevice():
     try:
@@ -116,11 +121,12 @@ def appRequestOneDevice():
             returnDict = {
                 "intensity": ""
             }
-            newVal = databaseConnection.getData(req_data['username'], req_data['targetDevice'])
+            newVal = databaseConnection.getData(
+                req_data['username'], req_data['targetDevice'])
             returnDict['intensity'] = newVal
 
             return json.dumps(returnDict)
-        
+
         return {
             "Result": "Failure"
         }
