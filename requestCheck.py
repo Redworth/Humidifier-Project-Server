@@ -4,15 +4,6 @@ from firebase_admin import db
 from os import getenv
 from firebase_init import main_app
 
-users_temp_dict = {}
-
-def refreshOrInitDB():
-    global users_temp_dict
-    ref = db.reference('/')
-    users_temp_dict = ref.get()
-
-refreshOrInitDB()
-
 username = ''
 
 usernameSuccess = ''
@@ -26,9 +17,11 @@ def requestCheckRegDevice(dict_check):
 
     userCheck = requestCheckExistingUser(dict_check)
 
+    ref = db.reference('/')
+
     if userCheck['Result']== "Success":
         try:
-            if new_device_name in users_temp_dict[username]['devices']:
+            if new_device_name in ref.get()[username]['devices']:
                 new_device_success = "Failure"
             else:
                 new_device_success = "Success"
@@ -43,8 +36,11 @@ def requestCheckRegDevice(dict_check):
 
 def requestCheckExistingUser(dict_check):
     username = dict_check['username']
+
+    ref = db.reference('/')
+
     try:
-        if username in users_temp_dict:
+        if username in ref.get():
             username_success = "Success"
         else:
             username_success = "Failure"
@@ -57,8 +53,11 @@ def requestCheckExistingUser(dict_check):
 
 def requestCheckCreateAccount(dict_check):
     new_username = dict_check['new_username']
+
+    ref = db.reference('/')
+
     try:
-        if new_username in users_temp_dict:
+        if new_username in ref.get():
             new_username_success = "Failure"
         else:
             new_username_success = "Success"
@@ -70,9 +69,12 @@ def requestCheckCreateAccount(dict_check):
     }
 
 def requestCheckUpdateData(dict_check):
+
+    ref = db.reference('/')
+
     global username
     try:
-        if dict_check['username'] in users_temp_dict:
+        if dict_check['username'] in ref.get():
             username = dict_check['username']
             usernameSuccess = "Success"
         else:
@@ -81,7 +83,7 @@ def requestCheckUpdateData(dict_check):
         usernameSuccess = "Failure"
 
     try:
-        if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
+        if dict_check['targetDevice'] in ref.get()[username]['devices']:
             targetSuccess = "Success"
         else:
             targetSuccess = 'Failure'
@@ -118,8 +120,11 @@ def requestCheckUpdateData(dict_check):
 
 def requestCheckPoll(dict_check):
     global username
+
+    ref = db.reference('/')
+
     try:
-        if dict_check['username'] in users_temp_dict:
+        if dict_check['username'] in ref.get():
             username = dict_check['username']
             usernameSuccess = "Success"
         else:
@@ -128,7 +133,7 @@ def requestCheckPoll(dict_check):
         usernameSuccess = "Failure"
 
     try:
-        if dict_check['targetDevice'] in users_temp_dict[username]['devices']:
+        if dict_check['targetDevice'] in ref.get()[username]['devices']:
             targetSuccess = "Success"
         else:
             targetSuccess = 'Failure'
