@@ -12,7 +12,7 @@ detailsSuccess = ''
 intensitySuccess = ''
 
 def requestCheckRegDevice(dict_check):
-    new_device_name = dict_check['new_device_name']
+    new_device_name = dict_check['new_device_name'].lower()
     username = dict_check['username']
 
     userCheck = requestCheckExistingUser(dict_check)
