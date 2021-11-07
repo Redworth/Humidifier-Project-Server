@@ -18,10 +18,15 @@ def requestCheckRegDevice(dict_check):
     userCheck = requestCheckExistingUser(dict_check)
 
     ref = db.reference('/')
-
+    
+    user_devices = []
+    
+    for i in ref.get()[username]['devices']:
+        user_devices.append(i.lower())
+                            
     if userCheck['Result']== "Success":
         try:
-            if new_device_name in ref.get()[username]['devices']:
+            if new_device_name in user_devices:
                 new_device_success = "Failure"
             else:
                 new_device_success = "Success"
