@@ -70,9 +70,10 @@ def registerDeviceRequest():
 
         jsonReturn = json.dumps(check)
 
-        if check['Result'] == "Success":
-            databaseConnection.registerNewDevice(
-                req_data['username'], req_data['new_device_name'])
+        if (req_data['register'] == "YES"):
+            if check['Result'] == "Success":
+                databaseConnection.registerNewDevice(
+                    req_data['username'], req_data['new_device_name'])
 
         return jsonReturn
 
