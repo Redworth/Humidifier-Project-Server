@@ -4,3 +4,5 @@
 *.pyc
 *.pytest_cache
 credentials.json
+# Ignore devcontainer folder
+.devcontainer
