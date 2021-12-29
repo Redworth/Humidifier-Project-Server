@@ -30,9 +30,6 @@ docker build -t humidifier-project-server .
 docker run -d -p 8000:8000 humidifier-project-server
 ```
 
-To build so images can be pushed to Github Packages:
-`docker build -t ghcr.io/redworth/humidifier-project-server:latest .`
-
 To execute a package pulled from Github Packages:
 `docker run -d -p 8000:8000 ghcr.io/redworth/humidifier-project-server:latest`
 
@@ -45,9 +42,12 @@ docker login ghcr.io --username <github-username> --password <github-pat>
 docker pull ghcr.io/redworth/humidifier-project-server:latest
 ```
 
-To upload images to Github Packages:
+To build and publish images to Github Packages:
 
 ```
 docker login ghcr.io --username <github-username> --password <github-pat>
+docker build -t ghcr.io/redworth/humidifier-project-server:latest .
 docker push ghcr.io/redworth/humidifier-project-server:latest`
 ```
+
+To build and publish to a different registry, substitute `ghcr.io` for a different registry domain.
