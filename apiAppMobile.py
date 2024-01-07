@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 CORS(app)
 
+import google_fake_auth
+import google_intents
 
 @app.route('/app-request', methods=['POST'])
 def appUpdateRequest():
